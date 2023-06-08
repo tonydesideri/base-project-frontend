@@ -1,6 +1,6 @@
 import { UserDTO } from "../../../Data/DTOs/UserDTO";
 import { User } from "../../../Domain/Models/User";
-import { Http } from "../../../Services/Http";
+import { Http } from "../../../Infrastructure/Services/Http";
 
 export interface UserDataSource {
   getUsers(): Promise<User[]>;

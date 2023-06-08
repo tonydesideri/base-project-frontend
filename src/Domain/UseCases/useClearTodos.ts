@@ -1,6 +1,6 @@
-import { TodoRepositoryImpl } from "../../Data/Repositories/TodoRepositoryImpl";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useNotification } from "../../Services/useNotification";
+import { TodoRepositoryImpl } from "../../Data/Repositories/TodoRepositoryImpl";
+import { useNotification } from "../../Infrastructure/Services/useNotification";
 
 export const useClearTodos = (repository: TodoRepositoryImpl) => {
   const notify = useNotification();
