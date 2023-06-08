@@ -1,5 +1,5 @@
-import { UserList } from "../../User/UserList";
-import { Layout } from "../Components/Layout";
+import { UserList } from "../../user/UserList";
+import { Layout } from "../components/Layout";
 
 export function UsersPage() {
   return (
