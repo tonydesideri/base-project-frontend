@@ -1,4 +1,4 @@
-import { useFetchUsers } from '../../../usecases/user/useFetchUsers.usecases'
+import { useFetchUsers } from 'src/usecases/user/useFetchUsers.usecases'
 
 export function UserList() {
   const { users, isFetchUsersLoading, isFetchUsersSuccess } = useFetchUsers()
