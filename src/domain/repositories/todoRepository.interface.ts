@@ -1,6 +1,6 @@
-import { TodoM } from "../models/todo";
+import { TodoM } from '../models/todo'
 
 export interface ITodoRepository {
-  getTodos(): Promise<TodoM[]>;
-  createTodo(todo: Omit<TodoM, "id">): Promise<TodoM>;
+  getTodos(): Promise<TodoM[]>
+  createTodo(todo: Omit<TodoM, 'id'>): Promise<TodoM>
 }

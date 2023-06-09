@@ -1,5 +1,5 @@
-import { UserList } from "../../user/UserList";
-import { Layout } from "../components/Layout";
+import { UserList } from '../../user/UserList'
+import { Layout } from '../components/Layout'
 
 export function UsersPage() {
   return (
@@ -9,5 +9,5 @@ export function UsersPage() {
         <UserList />
       </main>
     </Layout>
-  );
+  )
 }

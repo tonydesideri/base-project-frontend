@@ -1,5 +1,5 @@
-import { UserM } from "../models/user";
+import { UserM } from '../models/user'
 
 export interface IUserDataSource {
-  getUsers(): Promise<UserM[]>;
+  getUsers(): Promise<UserM[]>
 }

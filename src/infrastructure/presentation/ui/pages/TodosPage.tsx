@@ -1,6 +1,6 @@
-import { CreateTodoForm } from "../../todo/CreateTodoForm";
-import { TodoList } from "../../todo/TodoList";
-import { Layout } from "../components/Layout";
+import { CreateTodoForm } from '../../todo/CreateTodoForm'
+import { TodoList } from '../../todo/TodoList'
+import { Layout } from '../components/Layout'
 
 export function TodosPage() {
   return (
@@ -11,5 +11,5 @@ export function TodosPage() {
         <CreateTodoForm />
       </main>
     </Layout>
-  );
+  )
 }

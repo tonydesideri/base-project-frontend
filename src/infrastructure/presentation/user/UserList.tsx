@@ -1,7 +1,7 @@
-import { useFetchUsers } from "../../../usecases/user/useFetchUsers.usecases";
+import { useFetchUsers } from '../../../usecases/user/useFetchUsers.usecases'
 
 export function UserList() {
-  const { users, isFetchUsersLoading, isFetchUsersSuccess } = useFetchUsers();
+  const { users, isFetchUsersLoading, isFetchUsersSuccess } = useFetchUsers()
 
   return (
     <fieldset>
@@ -17,5 +17,5 @@ export function UserList() {
         </ul>
       )}
     </fieldset>
-  );
+  )
 }

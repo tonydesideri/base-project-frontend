@@ -1,41 +1,40 @@
-import * as React from "react";
-import { useClearTodos } from "../../../usecases/todo/useClearTodos.usecases";
-import { useCreateTodo } from "../../../usecases/todo/useCreateTodo.usecases";
-import { useNotification } from "../../services/useNotification";
-
+import * as React from 'react'
+import { useClearTodos } from '../../../usecases/todo/useClearTodos.usecases'
+import { useCreateTodo } from '../../../usecases/todo/useCreateTodo.usecases'
+import { useNotification } from '../../services/useNotification'
 
 export function CreateTodoForm() {
-  const notify = useNotification();
-  const inputRef = React.useRef<HTMLInputElement>(null);
-  const formRef = React.useRef<HTMLFormElement>(null);
+  const notify = useNotification()
+  const inputRef = React.useRef<HTMLInputElement>(null)
+  const formRef = React.useRef<HTMLFormElement>(null)
 
   const createTodo = useCreateTodo()
 
   const clearTodos = useClearTodos()
 
   const handleCreate = async () => {
-    const title = inputRef.current?.value;
+    const title = inputRef.current?.value
 
     if (!title) {
-      notify.error("Title is required.");
-      return;
+      notify.error('Title is required.')
+      return
     }
 
-    const baseData = { completed: false, userId: 1 };
+    const baseData = { completed: false, userId: 1 }
 
     createTodo.mutate(
       { ...baseData, title },
       {
         onSuccess: () => {
-          formRef.current?.reset();
+          formRef.current?.reset()
         },
-      }
-    );
-  };
+      },
+    )
+  }
 
   const handleClear = () => {
-    clearTodos.mutate();
-  };
+    clearTodos.mutate()
+  }
 
   return (
     <fieldset>
@@ -43,12 +42,12 @@ export function CreateTodoForm() {
       <form ref={formRef}>
         <input type="text" ref={inputRef} />
         <button type="button" onClick={handleCreate}>
-          {createTodo.isLoading ? "Creating.." : "Create New"}
+          {createTodo.isLoading ? 'Creating..' : 'Create New'}
         </button>
         <button type="button" onClick={handleClear}>
-          {createTodo.isLoading ? "Creating.." : "Clear List"}
+          {createTodo.isLoading ? 'Creating..' : 'Clear List'}
         </button>
       </form>
     </fieldset>
-  );
+  )
 }
