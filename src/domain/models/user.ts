@@ -1,16 +1,11 @@
-export interface UserM {
+export interface IUserWithoutPassword {
   id: number
   email: string
-  password: string
   createdate: string
   updateddate: string
   lastLogin: string | null
 }
 
-export interface UserApiM {
-  data: UserM[]
-  isArray: boolean
-  path: string
-  duration: string
-  method: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE'
+export interface UserM extends IUserWithoutPassword {
+  password?: string
 }

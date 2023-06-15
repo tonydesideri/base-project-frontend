@@ -1,5 +1,5 @@
 import { useQuery } from 'react-query'
-import { UserRepository } from 'src/data/repository/user.repository'
+import { UserRepository } from 'src/data/gatways/user.repository'
 import { FetchUsersUseCase } from 'src/data/usecases/user/fetchUsers.usecases'
 import { UserM } from 'src/domain/models/user'
 import { HttpService } from 'src/infrastructure/services/http.service'

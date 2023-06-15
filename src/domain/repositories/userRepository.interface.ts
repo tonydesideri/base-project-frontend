@@ -1,8 +1,7 @@
-import { UserApiM, UserM } from '../models/user'
+import { ICreateUserUseCase } from '../usecases/user/createUser.interface'
+import { IFetchUsersUseCase } from '../usecases/user/fetchUsers.interface'
 
 export interface IUserRepository {
-  getUsers(): Promise<UserM[]>
-  createUser(
-    user: Omit<UserM, 'id' | 'createdate' | 'updateddate' | 'lastLogin'>,
-  ): Promise<UserApiM>
+  fetchUsers(): Promise<IFetchUsersUseCase.Model>
+  createUser(params: ICreateUserUseCase.Params): Promise<void>
 }
