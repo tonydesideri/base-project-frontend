@@ -1,7 +1,7 @@
 import * as React from 'react'
-import { useClearTodos } from '../../../../../../usecases/todo/useClearTodos.usecases'
-import { useCreateTodo } from '../../../../../../usecases/todo/useCreateTodo.usecases'
-import { useNotification } from '../../../../../services/useNotification'
+import { useClearTodos } from '../../../../../data/usecases/todo/useClearTodos.usecases'
+import { useCreateTodo } from '../../../../../data/usecases/todo/useCreateTodo.usecases'
+import { useNotification } from '../../../../../infrastructure/services/useNotification'
 
 export function CreateTodoForm() {
   const notify = useNotification()

@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
-import { TodoM } from '../../domain/models/todo'
-import { useCasesProxy } from '../../infrastructure/usecases-proxy/usecases-proxy'
+import { TodoM } from '../../../domain/models/todo'
+import { useCasesProxy } from '../../../main/usecases-proxy/usecases-proxy'
 
 export const useFetchTodos = () => {
   const { todoRepository } = useCasesProxy()

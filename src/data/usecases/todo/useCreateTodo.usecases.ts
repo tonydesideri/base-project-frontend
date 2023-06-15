@@ -1,9 +1,9 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { TodoM } from '../../domain/models/todo'
+import { TodoM } from '../../../domain/models/todo'
 
-import { useLogger } from '../../infrastructure/services/useLogger'
-import { useNotification } from '../../infrastructure/services/useNotification'
-import { useCasesProxy } from '../../infrastructure/usecases-proxy/usecases-proxy'
+import { useLogger } from '../../../infrastructure/services/useLogger'
+import { useNotification } from '../../../infrastructure/services/useNotification'
+import { useCasesProxy } from '../../../main/usecases-proxy/usecases-proxy'
 
 export const useCreateTodo = () => {
   const { todoRepository } = useCasesProxy()

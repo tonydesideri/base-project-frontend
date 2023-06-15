@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { useNotification } from '../../infrastructure/services/useNotification'
-import { useCasesProxy } from '../../infrastructure/usecases-proxy/usecases-proxy'
+import { useNotification } from '../../../infrastructure/services/useNotification'
+import { useCasesProxy } from '../../../main/usecases-proxy/usecases-proxy'
 
 export const useClearTodos = () => {
   const { todoRepository } = useCasesProxy()

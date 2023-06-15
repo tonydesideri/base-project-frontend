@@ -1,7 +1,8 @@
-import { useFetchUsers } from 'src/usecases/user/useFetchUsers.usecases'
+import { useFetchUsersAdapter } from 'src/main/adapters/fetchUsers.adapter'
 
 export function UserList() {
-  const { users, isFetchUsersLoading, isFetchUsersSuccess } = useFetchUsers()
+  const { users, isFetchUsersLoading, isFetchUsersSuccess } =
+    useFetchUsersAdapter()
 
   return (
     <fieldset>
@@ -10,9 +11,7 @@ export function UserList() {
       {isFetchUsersSuccess && (
         <ul>
           {users?.map((user) => (
-            <li key={user.id}>
-              {user.username} - {user.email}
-            </li>
+            <li key={user.id}>{user.email}</li>
           ))}
         </ul>
       )}

@@ -1,10 +1,8 @@
 import { createContext, JSX, useContext } from 'react'
-import { TodoDataSource } from '../dataSources/todo.datasource'
-import { UserDataSource } from '../dataSources/user.datasource'
+import { useFetchUsersAdapter } from '../adapters/fetchUsers.adapter'
 
 const SERVICES = {
-  todoRepository: new TodoDataSource(),
-  userRepository: new UserDataSource(),
+  useFetchUser: useFetchUsersAdapter,
 }
 
 const UseCasesProxy = createContext<typeof SERVICES | undefined>(undefined)
