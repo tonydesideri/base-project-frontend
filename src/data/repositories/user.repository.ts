@@ -1,23 +1,23 @@
 import { IUserRepository } from 'src/domain/repositories/userRepository.interface'
-import { IApiResponse, IHTTPService } from 'src/domain/services/http.interface'
 import { ICreateUserUseCase } from 'src/domain/usecases/user/createUser.interface'
 import { IFetchUsersUseCase } from 'src/domain/usecases/user/fetchUsers.interface'
+import { IHttpService } from '../services/http.interface'
 
 
 export class UserRepository implements IUserRepository {
-  private httpService: IHTTPService
+  private httpService: IHttpService
 
-  constructor(httpService: IHTTPService) {
+  constructor(httpService: IHttpService) {
     this.httpService = httpService
   }
 
-  async fetchUsers(): Promise<IFetchUsersUseCase.Model> {
-    const res = await this.httpService.get<IApiResponse<IFetchUsersUseCase.Model>>('/user/users')
-    return res.data.data
+  async fetchUsers(): Promise<IFetchUsersUseCase.Api> {
+    const res = await this.httpService.get<IFetchUsersUseCase.Api>('/user/users')
+    return res.data
   }
 
   async createUser(params: ICreateUserUseCase.Params): Promise<void> {
-    await this.httpService.post<IApiResponse<void>>('/user/user', params)
+    await this.httpService.post<void>('/user/user', params)
   }
 
   // mapToModel(user: IFetchUsersUseCase.Model): UserM {

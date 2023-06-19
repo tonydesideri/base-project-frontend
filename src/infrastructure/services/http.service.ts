@@ -1,9 +1,8 @@
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
-import { IHTTPService } from '../../domain/services/http.interface'
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 
 interface HTTPRequestConfig extends AxiosRequestConfig {}
 
-export class HttpService implements IHTTPService {
+export class HttpService implements HttpService {
   private axiosInstance: AxiosInstance
 
   constructor() {
@@ -12,58 +11,58 @@ export class HttpService implements IHTTPService {
     })
   }
 
-  async get<T>(url: string, config: HTTPRequestConfig = {}): Promise<T> {
+  async get<T>(url: string, config: HTTPRequestConfig = {}): Promise<AxiosResponse<T>> {
     const response: AxiosResponse<T> = await this.axiosInstance.get<T>(
       url,
       config,
     )
-    return response.data
+    return response
   }
 
-  async delete<T>(url: string, config: HTTPRequestConfig = {}): Promise<T> {
+  async delete<T>(url: string, config: HTTPRequestConfig = {}): Promise<AxiosResponse<T>> {
     const response: AxiosResponse<T> = await this.axiosInstance.delete<T>(
       url,
       config,
     )
-    return response.data
+    return response
   }
 
   async put<T>(
     url: string,
     body: unknown,
     config: HTTPRequestConfig = {},
-  ): Promise<T> {
+  ): Promise<AxiosResponse<T>> {
     const response: AxiosResponse<T> = await this.axiosInstance.put<T>(
       url,
       body,
       config,
     )
-    return response.data
+    return response
   }
 
   async patch<T>(
     url: string,
     body: unknown,
     config: HTTPRequestConfig = {},
-  ): Promise<T> {
+  ): Promise<AxiosResponse<T>> {
     const response: AxiosResponse<T> = await this.axiosInstance.patch<T>(
       url,
       body,
       config,
     )
-    return response.data
+    return response
   }
 
   async post<T>(
     url: string,
     body: unknown,
     config: HTTPRequestConfig = {},
-  ): Promise<T> {
+  ): Promise<AxiosResponse<T>> {
     const response: AxiosResponse<T> = await this.axiosInstance.post<T>(
       url,
       body,
       config,
     )
-    return response.data
+    return response
   }
 }
