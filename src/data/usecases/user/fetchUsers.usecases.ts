@@ -9,9 +9,9 @@ export class FetchUsersUseCase implements IFetchUsersUseCase {
   }
 
   async execute(): Promise<IFetchUsersUseCase.Model | undefined> {
-    const users = await this.userRepository.fetchUsers()
-    if (users.length) {
-      return users
+    const response = await this.userRepository.fetchUsers()
+    if (response.data.length) {
+      return response.data
     }
     return undefined
   }

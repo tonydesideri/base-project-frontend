@@ -12,8 +12,13 @@ export class UserRepository implements IUserRepository {
   }
 
   async fetchUsers(): Promise<IFetchUsersUseCase.Api> {
-    const res = await this.httpService.get<IFetchUsersUseCase.Api>('/user/users')
-    return res.data
+    try {
+      const response = await this.httpService.get<IFetchUsersUseCase.Api>('/user/users')
+      return response.data
+    } catch (error: any) {
+      console.log(error.message)
+      throw new Error(error.message)
+    }
   }
 
   async createUser(params: ICreateUserUseCase.Params): Promise<void> {

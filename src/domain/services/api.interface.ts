@@ -5,3 +5,10 @@ export interface IApiResponse<T> {
   duration: string
   method: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE'
 }
+
+export interface IApiResponseError {
+  statusCode: number;
+  timestamp: string;
+  path: string;
+  message: string[];
+}
