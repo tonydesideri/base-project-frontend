@@ -1,26 +1,26 @@
-import { useState } from 'react'
-import { useCreateUserAdapter } from 'src/main/adapters/createUser.adapter'
-import { Layout } from '../../components/Layout'
-import { UserList } from './components/UserList'
+import { useState } from 'react';
+import { useCreateUserAdapter } from 'src/main/adapters/createUser.adapter';
+import { Layout } from '../../components/Layout';
+import { UserList } from './components/UserList';
 
 export default function UsersPage() {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  const { userCreate } = useCreateUserAdapter()
+  const { userCreate } = useCreateUserAdapter();
 
   const handleSubmit = async (e: any) => {
-    e.preventDefault()
+    e.preventDefault();
     await userCreate({
       email,
       password,
       createdate: '',
       id: 1,
       updateddate: '',
-      lastLogin: '',
-    })
+      lastLogin: ''
+    });
     // Lógica adicional após a autenticação (por exemplo, redirecionar para uma página)
-  }
+  };
   return (
     <Layout>
       <main>
@@ -46,5 +46,5 @@ export default function UsersPage() {
         </form>
       </div>
     </Layout>
-  )
+  );
 }

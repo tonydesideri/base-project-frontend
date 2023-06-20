@@ -1,28 +1,29 @@
-import { IUserRepository } from 'src/domain/repositories/userRepository.interface'
-import { ICreateUserUseCase } from 'src/domain/usecases/user/createUser.interface'
-import { IFetchUsersUseCase } from 'src/domain/usecases/user/fetchUsers.interface'
-import { IHttpService } from '../services/http.interface'
-
+import { IUserRepository } from 'src/domain/repositories/userRepository.interface';
+import { TCreateUserUseCase } from 'src/domain/usecases/user/createUser.interface';
+import { TFetchUsersUseCase } from 'src/domain/usecases/user/fetchUsers.interface';
+import { IHttpService } from '../services/http.interface';
 
 export class UserRepository implements IUserRepository {
-  private httpService: IHttpService
+  private httpService: IHttpService;
 
   constructor(httpService: IHttpService) {
-    this.httpService = httpService
+    this.httpService = httpService;
   }
 
-  async fetchUsers(): Promise<IFetchUsersUseCase.Api> {
+  async fetchUsers(): Promise<TFetchUsersUseCase.Api> {
     try {
-      const response = await this.httpService.get<IFetchUsersUseCase.Api>('/user/users')
-      return response.data
+      const response = await this.httpService.get<TFetchUsersUseCase.Api>(
+        '/user/users'
+      );
+      return response.data;
     } catch (error: any) {
-      console.log(error.message)
-      throw new Error(error.message)
+      console.log(error.message);
+      throw new Error(error.message);
     }
   }
 
-  async createUser(params: ICreateUserUseCase.Params): Promise<void> {
-    await this.httpService.post<void>('/user/user', params)
+  async createUser(params: TCreateUserUseCase.Params): Promise<void> {
+    await this.httpService.post<void>('/user/user', params);
   }
 
   // mapToModel(user: IFetchUsersUseCase.Model): UserM {

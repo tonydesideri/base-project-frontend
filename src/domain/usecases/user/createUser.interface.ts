@@ -1,12 +1,10 @@
-
-export namespace ICreateUserUseCase {
+export declare namespace TCreateUserUseCase {
   export type Params = {
-    email: string
-    password: string
-  }
+    email: string;
+    password: string;
+  };
 }
 
 export interface ICreateUserUseCase {
-  execute: (params: ICreateUserUseCase.Params) => Promise<void>
+  execute: (params: TCreateUserUseCase.Params) => Promise<void>;
 }
-

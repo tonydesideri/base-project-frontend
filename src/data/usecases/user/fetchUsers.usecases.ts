@@ -1,18 +1,20 @@
-
-import { UserRepository } from 'src/data/repositories/user.repository'
-import { IFetchUsersUseCase } from 'src/domain/usecases/user/fetchUsers.interface'
+import { UserRepository } from 'src/data/repositories/user.repository';
+import {
+  IFetchUsersUseCase,
+  TFetchUsersUseCase
+} from 'src/domain/usecases/user/fetchUsers.interface';
 
 export class FetchUsersUseCase implements IFetchUsersUseCase {
-  private userRepository: UserRepository
+  private userRepository: UserRepository;
   constructor(userRepository: UserRepository) {
-    this.userRepository = userRepository
+    this.userRepository = userRepository;
   }
 
-  async execute(): Promise<IFetchUsersUseCase.Model | undefined> {
-    const response = await this.userRepository.fetchUsers()
+  async execute(): Promise<TFetchUsersUseCase.Model | undefined> {
+    const response = await this.userRepository.fetchUsers();
     if (response.data.length) {
-      return response.data
+      return response.data;
     }
-    return undefined
+    return undefined;
   }
 }

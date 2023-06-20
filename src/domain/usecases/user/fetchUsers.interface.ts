@@ -1,11 +1,11 @@
-import { IUserWithoutPassword } from "src/domain/models/user"
-import { IApiResponse } from "src/domain/services/api.interface"
+import { IUserWithoutPassword } from 'src/domain/models/user';
+import { IApiResponse } from 'src/domain/services/api.interface';
 
-export interface IFetchUsersUseCase {
-  execute(): Promise<IFetchUsersUseCase.Model | undefined>
+export namespace TFetchUsersUseCase {
+  export type Model = IUserWithoutPassword[];
+  export type Api = IApiResponse<IUserWithoutPassword[]>;
 }
 
-export namespace IFetchUsersUseCase {
-  export type Model = IUserWithoutPassword[]
-  export type Api = IApiResponse<IUserWithoutPassword[]>
+export interface IFetchUsersUseCase {
+  execute(): Promise<TFetchUsersUseCase.Model | undefined>;
 }

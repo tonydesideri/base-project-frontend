@@ -1,8 +1,8 @@
-import { useFetchUsersAdapter } from 'src/main/adapters/fetchUsers.adapter'
+import { useFetchUsersAdapter } from 'src/main/adapters/fetchUsers.adapter';
 
 export function UserList() {
   const { users, isFetchUsersLoading, isFetchUsersSuccess } =
-    useFetchUsersAdapter()
+    useFetchUsersAdapter();
 
   return (
     <fieldset>
@@ -16,5 +16,5 @@ export function UserList() {
         </ul>
       )}
     </fieldset>
-  )
+  );
 }
