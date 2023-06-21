@@ -1,4 +1,4 @@
-import { useFetchUsersAdapter } from 'src/main/adapters/fetchUsers.adapter';
+import { useFetchUsersAdapter } from 'src/main/adapters/user/fetchUsers.adapter';
 
 export function UserList() {
   const { users, isFetchUsersLoading, isFetchUsersSuccess } =
@@ -6,7 +6,7 @@ export function UserList() {
 
   return (
     <fieldset>
-      <legend>User List</legend>
+      <legend>User Info</legend>
       {isFetchUsersLoading && <div>Loading...</div>}
       {isFetchUsersSuccess && (
         <ul>

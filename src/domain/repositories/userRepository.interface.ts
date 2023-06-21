@@ -1,7 +1,7 @@
-import { ICreateUserUseCase } from '../usecases/user/createUser.interface';
-import { IFetchUsersUseCase } from '../usecases/user/fetchUsers.interface';
+import { TCreateAccountUseCase } from '../usecases/user/createAccount.interface';
+import { TFetchUsersUseCase } from '../usecases/user/fetchUsers.interface';
 
 export interface IUserRepository {
-  fetchUsers(): Promise<IFetchUsersUseCase.Api>;
-  createUser(params: ICreateUserUseCase.Params): Promise<void>;
+  fetchUsers(): Promise<TFetchUsersUseCase.Api>;
+  createAccount(params: TCreateAccountUseCase.Params): Promise<void>;
 }

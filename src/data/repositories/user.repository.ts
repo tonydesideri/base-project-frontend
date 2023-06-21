@@ -1,5 +1,5 @@
 import { IUserRepository } from 'src/domain/repositories/userRepository.interface';
-import { TCreateUserUseCase } from 'src/domain/usecases/user/createUser.interface';
+import { TCreateAccountUseCase } from 'src/domain/usecases/user/createAccount.interface';
 import { TFetchUsersUseCase } from 'src/domain/usecases/user/fetchUsers.interface';
 import { IHttpService } from '../services/http.interface';
 
@@ -11,18 +11,13 @@ export class UserRepository implements IUserRepository {
   }
 
   async fetchUsers(): Promise<TFetchUsersUseCase.Api> {
-    try {
-      const response = await this.httpService.get<TFetchUsersUseCase.Api>(
-        '/user/users'
-      );
-      return response.data;
-    } catch (error: any) {
-      console.log(error.message);
-      throw new Error(error.message);
-    }
+    const response = await this.httpService.get<TFetchUsersUseCase.Api>(
+      '/user/users'
+    );
+    return response.data;
   }
 
-  async createUser(params: TCreateUserUseCase.Params): Promise<void> {
+  async createAccount(params: TCreateAccountUseCase.Params): Promise<void> {
     await this.httpService.post<void>('/user/user', params);
   }
 

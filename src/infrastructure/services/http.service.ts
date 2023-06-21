@@ -9,7 +9,8 @@ export class HttpService implements IHttpService {
 
   constructor() {
     this.axiosInstance = axios.create({
-      baseURL: 'http://localhost:3000/api_v1'
+      baseURL: 'http://localhost:3000/api_v1',
+      withCredentials: true
     });
 
     this.apiErrorHandlingInterceptor();
