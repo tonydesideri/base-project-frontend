@@ -1,28 +1,31 @@
 import { useState } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useResetPasswordAdapter } from 'src/main/adapters/auth/resetPassword.adapter';
 
-export default function ResetPasswordPage() {
+interface ResetPasswordPageProps {
+  email: string;
+  token: string;
+}
+
+export default function ResetPasswordPage({
+  email,
+  token
+}: ResetPasswordPageProps) {
   const [password, setPassword] = useState('');
 
   const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
+  // const [searchParams] = useSearchParams();
   const { resetPassword, isSuccess } = useResetPasswordAdapter();
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    const email = searchParams.get('email');
-    const token = searchParams.get('token');
-
-    if (!email || !token) {
-      alert('Esta faltando email e token');
-    } else {
-      await resetPassword({
-        password,
-        email,
-        token
-      });
-    }
+    // const email = searchParams.get('email');
+    // const token = searchParams.get('token');
+    await resetPassword({
+      password,
+      email,
+      token
+    });
   };
 
   return (

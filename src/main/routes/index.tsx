@@ -1,8 +1,8 @@
 import { Suspense, lazy } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import ForgotPasswordPage from 'src/presentation/ui/pages/forgot-password';
-import ResetPasswordPage from 'src/presentation/ui/pages/reset-password';
 import { IsAuthenticatedProvider } from '../contexts/isAuthenticated.context';
+import ResetPasswordPageFectory from '../factories/pages/resetPassword.factory';
 import { PrivateRoute } from './private/PrivateRoute';
 import { PublicRoute } from './public/PublicRoute';
 
@@ -42,7 +42,10 @@ export function Router() {
                 </PublicRoute>
               }
             />
-            <Route path="/reset-password" element={<ResetPasswordPage />} />
+            <Route
+              path="/reset-password"
+              element={<ResetPasswordPageFectory />}
+            />
             <Route
               path="/home"
               element={
