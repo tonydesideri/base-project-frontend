@@ -26,10 +26,10 @@ export class HttpService implements IHttpService {
               const response = await this.axiosInstance.get('/auth/refresh');
               if (response.status === 403) {
                 window.location.href = '/';
+                return axios(error.config);
               }
-              return axios(error.config);
             } catch (err: any) {
-              throw new Error('err.response.data.message');
+              throw new ApiError(error.response.data.message);
             }
           }
           throw new ApiError(error.response.data.message);

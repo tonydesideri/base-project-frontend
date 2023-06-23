@@ -45,6 +45,15 @@ export default function LoginPage() {
       >
         Criar conta
       </a>
+      <a
+        href="#"
+        style={{ marginTop: '40px' }}
+        onClick={() => {
+          navigate('/forgot-password');
+        }}
+      >
+        Esqueci minha senha
+      </a>
     </div>
   );
 }
