@@ -1,6 +1,7 @@
-import { CssVarsProvider } from '@mui/joy/styles';
+import { CssBaseline, ThemeProvider } from '@mui/material';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { Router } from './routes';
+import { theme } from './styles/global';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -16,9 +17,10 @@ const queryClient = new QueryClient({
 export function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <CssVarsProvider>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
         <Router />
-      </CssVarsProvider>
+      </ThemeProvider>
     </QueryClientProvider>
   );
 }

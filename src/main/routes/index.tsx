@@ -1,6 +1,6 @@
 import { Suspense, lazy } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import SplashScreen from 'src/presentation/ui/components/splash-screen';
+import SplashScreen from 'src/presentation/components/splash-screen';
 import ForgotPasswordPage from 'src/presentation/ui/pages/forgot-password';
 import { IsAuthenticatedProvider } from '../contexts/isAuthenticated.context';
 import ResetPasswordPageFectory from '../factories/pages/resetPassword.factory';
@@ -8,7 +8,7 @@ import { PrivateRoute } from './private/PrivateRoute';
 import { PublicRoute } from './public/PublicRoute';
 
 const UserListPage = lazy(() => import('src/presentation/ui/pages/user'));
-const LoginPage = lazy(() => import('src/presentation/ui/pages/login'));
+const SignInPage = lazy(() => import('src/presentation/ui/pages/sign-in'));
 const CreateAccountPage = lazy(
   () => import('src/presentation/ui/pages/create-account')
 );
@@ -23,7 +23,7 @@ export function Router() {
               path="/"
               element={
                 <PublicRoute>
-                  <LoginPage />
+                  <SignInPage />
                 </PublicRoute>
               }
             />

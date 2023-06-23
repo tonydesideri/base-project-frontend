@@ -1,8 +1,7 @@
+import { AuthM } from 'src/domain/models/auth';
+
 export declare namespace TSignInUseCase {
-  export type Params = {
-    email: string;
-    password: string;
-  };
+  export type Params = AuthM;
 }
 
 export interface ISignInUseCase {

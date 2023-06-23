@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useIsAuthenticatedContext } from 'src/main/contexts/isAuthenticated.context';
-import SplashScreen from 'src/presentation/ui/components/splash-screen';
+import SplashScreen from 'src/presentation/components/splash-screen';
 
 interface PublicRouteProps {
   children: ReactNode;

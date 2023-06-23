@@ -1,11 +1,11 @@
 import {
-  ReactNode,
-  createContext,
-  useContext,
-  useEffect,
-  useState
+    ReactNode,
+    createContext,
+    useContext,
+    useEffect,
+    useState
 } from 'react';
-import { AuthM } from 'src/domain/models/auth';
+import { AuthWithoutPasswordM } from 'src/domain/models/auth';
 import { useIsAuthenticatedAdapter } from '../adapters/auth/isAuthenticated.adapter';
 
 interface IsAuthenticatedProviderProps {
@@ -13,7 +13,7 @@ interface IsAuthenticatedProviderProps {
 }
 
 interface IsAuthenticatedContextProps {
-  user: AuthM | undefined;
+  user: AuthWithoutPasswordM | undefined;
   isUser: boolean;
   isLoading: boolean;
   isSuccess: boolean;
@@ -25,7 +25,7 @@ export const IsAuthenticatedContext =
 export function IsAuthenticatedProvider({
   children
 }: IsAuthenticatedProviderProps) {
-  const [user, setUser] = useState<AuthM | undefined>(undefined);
+  const [user, setUser] = useState<AuthWithoutPasswordM | undefined>(undefined);
 
   const { isAuthenticated, isAuthenticatedLoading, isAuthenticatedSuccess } =
     useIsAuthenticatedAdapter(!!user);
