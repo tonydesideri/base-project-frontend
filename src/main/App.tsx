@@ -1,3 +1,4 @@
+import { CssVarsProvider } from '@mui/joy/styles';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { Router } from './routes';
 
@@ -15,7 +16,9 @@ const queryClient = new QueryClient({
 export function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <Router />
+      <CssVarsProvider>
+        <Router />
+      </CssVarsProvider>
     </QueryClientProvider>
   );
 }

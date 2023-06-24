@@ -1,5 +1,6 @@
 import { Suspense, lazy } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import SplashScreen from 'src/presentation/ui/components/splash-screen';
 import ForgotPasswordPage from 'src/presentation/ui/pages/forgot-password';
 import { IsAuthenticatedProvider } from '../contexts/isAuthenticated.context';
 import ResetPasswordPageFectory from '../factories/pages/resetPassword.factory';
@@ -16,7 +17,7 @@ export function Router() {
   return (
     <IsAuthenticatedProvider>
       <BrowserRouter>
-        <Suspense fallback={<h1>Carregando...</h1>}>
+        <Suspense fallback={<SplashScreen />}>
           <Routes>
             <Route
               path="/"
