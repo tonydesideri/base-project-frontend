@@ -1,20 +1,12 @@
-import { useFetchUsersAdapter } from 'src/main/adapters/user/fetchUsers.adapter';
+import { useIsAuthenticatedContext } from 'src/main/contexts/isAuthenticated.context';
 
 export function UserList() {
-  const { users, isFetchUsersLoading, isFetchUsersSuccess } =
-    useFetchUsersAdapter();
+  const { user } = useIsAuthenticatedContext();
 
   return (
     <fieldset>
       <legend>User Info</legend>
-      {isFetchUsersLoading && <div>Loading...</div>}
-      {isFetchUsersSuccess && (
-        <ul>
-          {users?.map((user) => (
-            <li key={user.id}>{user.email}</li>
-          ))}
-        </ul>
-      )}
+      {!!user && <p>{user.email}</p>}
     </fieldset>
   );
 }

@@ -1,9 +1,12 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useSignInAdapter } from 'src/main/adapters/auth/signin.adapter';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const navigate = useNavigate();
 
   const { signin } = useSignInAdapter();
 
@@ -33,7 +36,13 @@ export default function LoginPage() {
         />
         <button type="submit">Login</button>
       </form>
-      <a href="/create-account" style={{ marginTop: '40px' }}>
+      <a
+        href="#"
+        style={{ marginTop: '40px' }}
+        onClick={() => {
+          navigate('/create-account');
+        }}
+      >
         Criar conta
       </a>
     </div>

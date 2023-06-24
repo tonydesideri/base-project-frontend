@@ -1,10 +1,12 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useCreateAccountAdapter } from 'src/main/adapters/user/createAccount.adapter';
 
 export default function CreateAccountPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const navigate = useNavigate();
   const { createAccount } = useCreateAccountAdapter();
 
   const handleSubmit = async (e: any) => {
@@ -33,7 +35,13 @@ export default function CreateAccountPage() {
         />
         <button type="submit">Login</button>
       </form>
-      <a href="/" style={{ marginTop: '40px' }}>
+      <a
+        href="#"
+        style={{ marginTop: '40px' }}
+        onClick={() => {
+          navigate('/');
+        }}
+      >
         login
       </a>
     </div>
