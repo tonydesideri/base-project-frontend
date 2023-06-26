@@ -12,8 +12,7 @@ export function useIsAuthenticatedAdapter(isUser: boolean) {
   const { data, isLoading, isError, isSuccess } = useQuery<AuthM>({
     queryKey: ['isAuthenticated'],
     queryFn: async () => await useCase.execute(),
-    enabled: !isUser,
-    refetchOnWindowFocus: false
+    enabled: !isUser
   });
 
   return {

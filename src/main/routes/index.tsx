@@ -14,7 +14,7 @@ export function Router() {
   return (
     <IsAuthenticatedProvider>
       <BrowserRouter>
-        <Suspense fallback={<p>Carregando...</p>}>
+        <Suspense fallback={<h1>Carregando...</h1>}>
           <Routes>
             <Route
               path="/"

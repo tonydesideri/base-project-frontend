@@ -4,7 +4,8 @@ import { Router } from './routes';
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      retry: false
+      retry: false,
+      refetchOnWindowFocus: false
       // refetchOnMount: false,
       // refetchOnReconnect: false
     }

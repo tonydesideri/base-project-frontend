@@ -16,6 +16,7 @@ interface IsAuthenticatedContextProps {
   user: AuthM | undefined;
   isUser: boolean;
   isLoading: boolean;
+  isSuccess: boolean;
 }
 
 export const IsAuthenticatedContext =
@@ -26,9 +27,8 @@ export function IsAuthenticatedProvider({
 }: IsAuthenticatedProviderProps) {
   const [user, setUser] = useState<AuthM | undefined>(undefined);
 
-  const { isAuthenticated, isAuthenticatedLoading } = useIsAuthenticatedAdapter(
-    !!user
-  );
+  const { isAuthenticated, isAuthenticatedLoading, isAuthenticatedSuccess } =
+    useIsAuthenticatedAdapter(!!user);
 
   useEffect(() => {
     if (!isAuthenticatedLoading) {
@@ -41,7 +41,8 @@ export function IsAuthenticatedProvider({
       value={{
         user: user || isAuthenticated,
         isUser: !!user || !!isAuthenticated,
-        isLoading: isAuthenticatedLoading
+        isLoading: isAuthenticatedLoading,
+        isSuccess: isAuthenticatedSuccess
       }}
     >
       {children}

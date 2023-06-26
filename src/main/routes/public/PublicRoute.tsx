@@ -7,11 +7,17 @@ interface PublicRouteProps {
 }
 
 export function PublicRoute({ children }: PublicRouteProps) {
-  const { isUser, isLoading } = useIsAuthenticatedContext();
+  const { isUser, isLoading, isSuccess } = useIsAuthenticatedContext();
+
+  if (isLoading) {
+    return <h1>Carregando...</h1>
+  }
 
   if (isUser && !isLoading) {
     return <Navigate to="/home" replace />;
   }
 
-  return children;
+  if (!isSuccess) {
+    return children;
+  }
 }
