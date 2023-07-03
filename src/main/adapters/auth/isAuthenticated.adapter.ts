@@ -1,7 +1,7 @@
 import { useQuery } from 'react-query';
 import { AuthRepository } from 'src/data/repositories/auth.repository';
 import { IsAuthenticatedUseCase } from 'src/data/usecases/auth/isAuthenticated.usecase';
-import { IAuthWithoutPassword } from 'src/domain/models/auth';
+import { TIsAuthenticatedUseCase } from 'src/domain/usecases/auth/isAuthenticated.interface';
 import { HttpService } from 'src/infrastructure/services/http.service';
 
 export function useIsAuthenticatedAdapter(isUser: boolean) {
@@ -10,7 +10,7 @@ export function useIsAuthenticatedAdapter(isUser: boolean) {
   );
 
   const { data, isLoading, isError, isSuccess } =
-    useQuery<IAuthWithoutPassword>({
+    useQuery<TIsAuthenticatedUseCase.Model>({
       queryKey: ['isAuthenticated'],
       queryFn: async () => await useCase.execute(),
       enabled: !isUser

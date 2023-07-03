@@ -10,7 +10,6 @@ export function Copyright({ ...props }: CopyrightProps) {
       color="text.secondary"
       align="center"
       {...props}
-      sx={{ position: 'absolute', bottom: 30 }}
     >
       {'Copyright © '}
       <Link color="inherit" href="#">

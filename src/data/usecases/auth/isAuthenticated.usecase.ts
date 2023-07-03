@@ -1,6 +1,8 @@
-import { IAuthWithoutPassword } from 'src/domain/models/auth';
 import { IAuthRepository } from 'src/domain/repositories/authRepository.interface';
-import { IIsAuthenticatedUseCase } from 'src/domain/usecases/auth/isAuthenticated.interface';
+import {
+  IIsAuthenticatedUseCase,
+  TIsAuthenticatedUseCase
+} from 'src/domain/usecases/auth/isAuthenticated.interface';
 
 export class IsAuthenticatedUseCase implements IIsAuthenticatedUseCase {
   private authRepository: IAuthRepository;
@@ -8,7 +10,7 @@ export class IsAuthenticatedUseCase implements IIsAuthenticatedUseCase {
     this.authRepository = authRepository;
   }
 
-  async execute(): Promise<IAuthWithoutPassword> {
+  async execute(): Promise<TIsAuthenticatedUseCase.Model> {
     const response = await this.authRepository.isAuthenticated();
     return response.data;
   }

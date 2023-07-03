@@ -9,9 +9,7 @@ import { PublicRoute } from './public/PublicRoute';
 
 const UserListPage = lazy(() => import('src/presentation/ui/pages/user'));
 const SignInPage = lazy(() => import('src/presentation/ui/pages/sign-in'));
-const CreateAccountPage = lazy(
-  () => import('src/presentation/ui/pages/create-account')
-);
+const SignUpPage = lazy(() => import('src/presentation/ui/pages/sign-up'));
 
 export function Router() {
   return (
@@ -28,10 +26,10 @@ export function Router() {
               }
             />
             <Route
-              path="/create-account"
+              path="/sign-up"
               element={
                 <PublicRoute>
-                  <CreateAccountPage />
+                  <SignUpPage />
                 </PublicRoute>
               }
             />

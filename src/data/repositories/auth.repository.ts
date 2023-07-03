@@ -3,6 +3,7 @@ import { TForgotPasswordUseCase } from 'src/domain/usecases/auth/forgotPassword.
 import { TIsAuthenticatedUseCase } from 'src/domain/usecases/auth/isAuthenticated.interface';
 import { TResetPasswordUseCase } from 'src/domain/usecases/auth/resetPassword.interface';
 import { TSignInUseCase } from 'src/domain/usecases/auth/signin.interface';
+import { TSignUpUseCase } from 'src/domain/usecases/auth/signup.interface';
 import { IHttpService } from '../services/http.interface';
 
 export class AuthRepository implements IAuthRepository {
@@ -14,6 +15,10 @@ export class AuthRepository implements IAuthRepository {
 
   async signin(params: TSignInUseCase.Params): Promise<void> {
     await this.httpService.post<void>('/auth/login', params);
+  }
+
+  async signup(params: TSignUpUseCase.Params): Promise<void> {
+    await this.httpService.post<void>('/user/user', params);
   }
 
   async isAuthenticated(): Promise<TIsAuthenticatedUseCase.Api> {
