@@ -24,12 +24,12 @@ import { z } from 'zod';
 const signInFormSchema = z.object({
   email: z
     .string()
-    .nonempty(SignInErrors.EMAIL_REQUIRE)
+    .nonempty(SignInErrors.EMAIL_REQUIRED)
     .email(SignInErrors.EMAIL_INVALID)
     .toLowerCase(),
   password: z
     .string()
-    .nonempty(SignInErrors.PASSWORD_REQUIRE)
+    .nonempty(SignInErrors.PASSWORD_REQUIRED)
     .min(8, SignInErrors.PASSWORD_MIN)
 });
 
@@ -80,18 +80,18 @@ export default function SignInPage() {
           flexDirection: 'column',
           justifyContent: 'center',
           alignItems: 'center',
-          marginBottom: '2rem',
           borderRadius: '4px',
-          boxShadow: '0 1px 4px rgba(0,0,0,.1), 0 2px 4px rgba(0,0,0,.04)'
+          boxShadow: '0 1px 4px rgba(0,0,0,.1), 0 2px 4px rgba(0,0,0,.04)',
+          mb: '2rem'
         }}
       >
         <Box
-          maxWidth="x"
+          maxWidth="xs"
           sx={{
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            padding: '3rem 1.5rem'
+            padding: '3rem 1rem'
           }}
         >
           <Avatar sx={{ bgcolor: 'primary.main' }}>
@@ -166,22 +166,22 @@ export default function SignInPage() {
             Esqueceu sua senha?
           </Link>
         </Box>
+        <Typography variant="body2" color="text.secondary" sx={{ mb: '2rem' }}>
+          Não possui uma conta?
+          <Link
+            href="#"
+            variant="body1"
+            sx={{
+              textDecoration: 'none',
+              ml: 1,
+              fontWeight: '500'
+            }}
+            onClick={() => navigate('/sign-up')}
+          >
+            Cadastrar-se
+          </Link>
+        </Typography>
       </Container>
-      <Typography variant="body2" color="gray">
-        Não possui uma conta?
-        <Link
-          href="#"
-          variant="body1"
-          sx={{
-            textDecoration: 'none',
-            ml: 1,
-            fontWeight: '500'
-          }}
-          onClick={() => navigate('/create-account')}
-        >
-          Cadastrar-se
-        </Link>
-      </Typography>
       <Copyright />
     </Box>
   );
