@@ -54,10 +54,17 @@ export default function SignInPage() {
   };
 
   const handleSignIn = async ({ email, password }: any) => {
-    await signin({
-      email,
-      password
-    });
+    await signin(
+      {
+        email,
+        password
+      },
+      {
+        onSuccess: () => {
+          window.location.href = '/home';
+        }
+      }
+    );
   };
 
   return (

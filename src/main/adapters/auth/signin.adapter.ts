@@ -8,15 +8,12 @@ export const useSignInAdapter = () => {
   const useCase = new SignInUseCase(new AuthRepository(new HttpService()));
   // const navigate = useNavigate();
 
-  const { mutateAsync, error, isError } = useMutation(
+  const { mutateAsync, error, isError, isSuccess } = useMutation(
     async (params: TSignInUseCase.Params) => {
       const user = await useCase.execute(params);
       return user;
     },
     {
-      onSuccess: () => {
-        window.location.href = '/home';
-      },
       onError: (error: any) => {
         return error?.message;
       }
@@ -26,6 +23,7 @@ export const useSignInAdapter = () => {
   return {
     signin: mutateAsync,
     mutateError: error?.message ? error.message : undefined,
-    isError
+    isError,
+    signinSuccess: isSuccess
   };
 };

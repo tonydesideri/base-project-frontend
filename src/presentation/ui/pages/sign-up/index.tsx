@@ -25,6 +25,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { SignUpErrors } from 'src/infrastructure/common/constants/singup-errors.constant';
+import { useSignInAdapter } from 'src/main/adapters/auth/signin.adapter';
 import { useSignUpAdapter } from 'src/main/adapters/auth/signup.adapter';
 import { Copyright } from 'src/presentation/components/copyrigth';
 import { z } from 'zod';
@@ -85,6 +86,7 @@ export default function SignUpPage() {
 
   const navigate = useNavigate();
   const { signup, signupError, signupLoading } = useSignUpAdapter();
+  const { signin, signinSuccess } = useSignInAdapter();
 
   const {
     register,
@@ -100,18 +102,35 @@ export default function SignUpPage() {
   };
 
   const handleSignUp = async ({ name, email, password }: any) => {
-    await signup({
-      name,
-      email,
-      password
-    });
+    await signup(
+      {
+        name,
+        email,
+        password
+      },
+      {
+        onSuccess: async () => {
+          await signin(
+            {
+              email,
+              password
+            },
+            {
+              onSuccess: () => {
+                window.location.href = '/verify-email';
+              }
+            }
+          );
+        }
+      }
+    );
   };
 
   const watchedPassword = watch('password', '');
   const isCriterionMet = (criterion: RegExp) => {
     return criterion.test(watchedPassword);
   };
-  console.log(signupError);
+
   return (
     <Box
       sx={{
@@ -276,7 +295,7 @@ export default function SignUpPage() {
               </Alert>
             )}
             <LoadingButton
-              loading={signupLoading}
+              loading={signupLoading || signinSuccess}
               type="submit"
               fullWidth
               variant="contained"

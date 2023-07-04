@@ -5,6 +5,7 @@ export interface IUserWithoutPassword {
   createdate: string;
   updateddate: string;
   lastLogin: string | null;
+  isVerifiedEmail: boolean;
 }
 
 export interface UserM extends IUserWithoutPassword {

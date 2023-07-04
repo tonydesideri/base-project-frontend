@@ -3,13 +3,18 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import SplashScreen from 'src/presentation/components/splash-screen';
 import ForgotPasswordPage from 'src/presentation/ui/pages/forgot-password';
 import { IsAuthenticatedProvider } from '../contexts/isAuthenticated.context';
-import ResetPasswordPageFectory from '../factories/pages/resetPassword.factory';
 import { PrivateRoute } from './private/PrivateRoute';
 import { PublicRoute } from './public/PublicRoute';
 
 const UserListPage = lazy(() => import('src/presentation/ui/pages/user'));
 const SignInPage = lazy(() => import('src/presentation/ui/pages/sign-in'));
 const SignUpPage = lazy(() => import('src/presentation/ui/pages/sign-up'));
+const VerifyEmailPageFactory = lazy(
+  () => import('src/main/factories/pages/verify-email.factory')
+);
+const ResetPasswordPageFectory = lazy(
+  () => import('src/main/factories/pages/resetPassword.factory')
+);
 
 export function Router() {
   return (
@@ -31,6 +36,14 @@ export function Router() {
                 <PublicRoute>
                   <SignUpPage />
                 </PublicRoute>
+              }
+            />
+            <Route
+              path="/verify-email"
+              element={
+                <PrivateRoute>
+                  <VerifyEmailPageFactory />
+                </PrivateRoute>
               }
             />
             <Route
