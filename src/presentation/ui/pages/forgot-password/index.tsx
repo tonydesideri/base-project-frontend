@@ -13,6 +13,7 @@ import {
 } from '@mui/material';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import { ForgotPasswordErrors } from 'src/infrastructure/common/constants/forgot-password-errors.constant';
 import { useForgotPasswordAdapter } from 'src/main/adapters/auth/forgot-password.adapter';
 import { Copyright } from 'src/presentation/components/copyrigth';
@@ -31,6 +32,8 @@ type ForgotPasswordFormData = z.infer<typeof forgotPasswordFormSchema>;
 export default function ForgotPasswordPage() {
   const [showMessage, setShowMessage] = useState(false);
   const [resendEmail, setResendEmail] = useState('');
+
+  const navigate = useNavigate();
 
   const { forgotPassword, forgotPasswordError, forgotPasswordLoading } =
     useForgotPasswordAdapter();
@@ -68,6 +71,14 @@ export default function ForgotPasswordPage() {
 
   const handleResendEmail = async () => {
     await handleForgotPassword({ email: resendEmail });
+  };
+
+  const handleNavigateToSignIn = () => {
+    navigate('/');
+  };
+
+  const handleNavigateToSignUp = () => {
+    navigate('/sign-up');
   };
 
   return (
@@ -151,7 +162,11 @@ export default function ForgotPasswordPage() {
                   Continuar
                 </LoadingButton>
               </Box>
-              <Link href="/" variant="body2" sx={{ textDecoration: 'none' }}>
+              <Link
+                variant="body2"
+                sx={{ textDecoration: 'none', cursor: 'pointer' }}
+                onClick={handleNavigateToSignIn}
+              >
                 Voltar ao início
               </Link>
             </Box>
@@ -162,13 +177,14 @@ export default function ForgotPasswordPage() {
             >
               Não possui uma conta?
               <Link
-                href="/sign-up"
                 variant="body2"
                 sx={{
                   textDecoration: 'none',
                   ml: 1,
-                  fontWeight: '500'
+                  fontWeight: '500',
+                  cursor: 'pointer'
                 }}
+                onClick={handleNavigateToSignUp}
               >
                 Cadastrar-se
               </Link>

@@ -23,6 +23,7 @@ import {
 } from '@mui/material';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import { SignUpErrors } from 'src/infrastructure/common/constants/singup-errors.constant';
 import { useSignInAdapter } from 'src/main/adapters/auth/signin.adapter';
 import { useSignUpAdapter } from 'src/main/adapters/auth/signup.adapter';
@@ -83,6 +84,8 @@ const passwordRequirements = [
 export default function SignUpPage() {
   const [showPassword, setShowPassword] = useState(false);
 
+  const navigate = useNavigate();
+
   const { signup, signupError, signupLoading } = useSignUpAdapter();
   const { signin, signinSuccess } = useSignInAdapter();
 
@@ -127,6 +130,10 @@ export default function SignUpPage() {
   const watchedPassword = watch('password', '');
   const isCriterionMet = (criterion: RegExp) => {
     return criterion.test(watchedPassword);
+  };
+
+  const handleNavigateToSignIn = () => {
+    navigate('/');
   };
 
   return (
@@ -216,12 +223,15 @@ export default function SignUpPage() {
               error={!!errors.password}
             />
             <Box sx={{ mt: 2 }}>
-              <Typography sx={{ fontSize: '0.875rem' }}>
+              <Typography sx={{ fontSize: '0.875rem' }} color="text.secondary">
                 Requisitos da senha:
               </Typography>
               <List>
                 {passwordRequirements.map((item) => (
-                  <ListItem key={item.text} sx={{ margin: 0, padding: 0 }}>
+                  <ListItem
+                    key={item.text}
+                    sx={{ margin: '0 0 0 15px', padding: 0 }}
+                  >
                     <ListItemIcon>
                       <CheckCircleOutline
                         fontSize="small"
@@ -237,6 +247,7 @@ export default function SignUpPage() {
                       sx={{
                         margin: 0,
                         fontSize: '0.875rem',
+                        fontWeight: 500,
                         color: (theme) =>
                           isCriterionMet(item.regexp)
                             ? theme.palette.success.main
@@ -247,7 +258,7 @@ export default function SignUpPage() {
                     />
                   </ListItem>
                 ))}
-                <ListItem sx={{ margin: 0, padding: 0 }}>
+                <ListItem sx={{ margin: '0 0 0 15px', padding: 0 }}>
                   <ListItemIcon>
                     <CheckCircleOutline
                       fontSize="small"
@@ -263,6 +274,7 @@ export default function SignUpPage() {
                     sx={{
                       margin: 0,
                       fontSize: '0.875rem',
+                      fontWeight: 500,
                       color: (theme) =>
                         watchedPassword.length >= 8
                           ? theme.palette.success.main
@@ -303,13 +315,14 @@ export default function SignUpPage() {
         <Typography variant="body2" color="text.secondary" sx={{ mb: '2rem' }}>
           Já possui uma conta?
           <Link
-            href="/"
             variant="body2"
             sx={{
               textDecoration: 'none',
               ml: 1,
-              fontWeight: '500'
+              fontWeight: '500',
+              cursor: 'pointer'
             }}
+            onClick={handleNavigateToSignIn}
           >
             Entrar
           </Link>

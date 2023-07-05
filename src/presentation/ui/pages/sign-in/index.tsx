@@ -15,6 +15,7 @@ import {
 } from '@mui/material';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import { SignInErrors } from 'src/infrastructure/common/constants/singin-errors.constant';
 import { useSignInAdapter } from 'src/main/adapters/auth/signin.adapter';
 import { Copyright } from 'src/presentation/components/copyrigth';
@@ -36,6 +37,8 @@ type SignInFormData = z.infer<typeof signInFormSchema>;
 
 export default function SignInPage() {
   const [showPassword, setShowPassword] = useState(false);
+
+  const navigate = useNavigate();
 
   const { signin, mutateError } = useSignInAdapter();
 
@@ -63,6 +66,14 @@ export default function SignInPage() {
         }
       }
     );
+  };
+
+  const handleNavigateToForgotPassword = () => {
+    navigate('/forgot-password');
+  };
+
+  const handleNavigateToSignUp = () => {
+    navigate('/sign-up');
   };
 
   return (
@@ -160,9 +171,9 @@ export default function SignInPage() {
             </Button>
           </Box>
           <Link
-            href="/forgot-password"
             variant="body2"
-            sx={{ textDecoration: 'none' }}
+            sx={{ textDecoration: 'none', cursor: 'pointer' }}
+            onClick={handleNavigateToForgotPassword}
           >
             Esqueceu sua senha?
           </Link>
@@ -170,13 +181,14 @@ export default function SignInPage() {
         <Typography variant="body2" color="text.secondary" sx={{ mb: '2rem' }}>
           Não possui uma conta?
           <Link
-            href="/sign-up"
             variant="body2"
             sx={{
               textDecoration: 'none',
               ml: 1,
-              fontWeight: '500'
+              fontWeight: '500',
+              cursor: 'pointer'
             }}
+            onClick={handleNavigateToSignUp}
           >
             Cadastrar-se
           </Link>
