@@ -23,7 +23,6 @@ import {
 } from '@mui/material';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
 import { SignUpErrors } from 'src/infrastructure/common/constants/singup-errors.constant';
 import { useSignInAdapter } from 'src/main/adapters/auth/signin.adapter';
 import { useSignUpAdapter } from 'src/main/adapters/auth/signup.adapter';
@@ -84,7 +83,6 @@ const passwordRequirements = [
 export default function SignUpPage() {
   const [showPassword, setShowPassword] = useState(false);
 
-  const navigate = useNavigate();
   const { signup, signupError, signupLoading } = useSignUpAdapter();
   const { signin, signinSuccess } = useSignInAdapter();
 
@@ -136,7 +134,6 @@ export default function SignUpPage() {
       sx={{
         display: 'flex',
         minHeight: '100vh',
-        background: 'primary.main',
         alignItems: 'center',
         justifyContent: 'center',
         flexDirection: 'column'
@@ -179,7 +176,6 @@ export default function SignUpPage() {
           >
             <TextField
               margin="normal"
-              required
               fullWidth
               id="name"
               label="Nome"
@@ -191,7 +187,6 @@ export default function SignUpPage() {
             />
             <TextField
               margin="normal"
-              required
               fullWidth
               id="email"
               label="E-mail"
@@ -202,7 +197,6 @@ export default function SignUpPage() {
             />
             <TextField
               margin="normal"
-              required
               fullWidth
               label="Senha"
               type={showPassword ? 'text' : 'password'}
@@ -309,14 +303,13 @@ export default function SignUpPage() {
         <Typography variant="body2" color="text.secondary" sx={{ mb: '2rem' }}>
           Já possui uma conta?
           <Link
-            href="#"
-            variant="body1"
+            href="/"
+            variant="body2"
             sx={{
               textDecoration: 'none',
               ml: 1,
               fontWeight: '500'
             }}
-            onClick={() => navigate('/')}
           >
             Entrar
           </Link>

@@ -13,7 +13,6 @@ export default function VerifyEmailPage({ user }: VerifyEmailPageProps) {
       sx={{
         display: 'flex',
         minHeight: '100vh',
-        background: 'primary.main',
         alignItems: 'center',
         justifyContent: 'center',
         flexDirection: 'column'
