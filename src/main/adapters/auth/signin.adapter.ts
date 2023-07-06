@@ -8,7 +8,7 @@ export const useSignInAdapter = () => {
   const useCase = new SignInUseCase(new AuthRepository(new HttpService()));
   // const navigate = useNavigate();
 
-  const { mutateAsync, error, isError, isSuccess } = useMutation(
+  const { mutateAsync, error, isError, isSuccess, isLoading } = useMutation(
     async (params: TSignInUseCase.Params) => {
       const user = await useCase.execute(params);
       return user;
@@ -24,6 +24,7 @@ export const useSignInAdapter = () => {
     signin: mutateAsync,
     mutateError: error?.message ? error.message : undefined,
     isError,
-    signinSuccess: isSuccess
+    signinSuccess: isSuccess,
+    signinLoading: isLoading
   };
 };

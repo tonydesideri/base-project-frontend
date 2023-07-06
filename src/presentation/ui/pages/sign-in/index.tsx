@@ -101,7 +101,6 @@ export default function SignInPage() {
         }}
       >
         <Box
-          maxWidth="xs"
           sx={{
             display: 'flex',
             flexDirection: 'column',

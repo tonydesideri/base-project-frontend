@@ -87,7 +87,7 @@ export default function SignUpPage() {
   const navigate = useNavigate();
 
   const { signup, signupError, signupLoading } = useSignUpAdapter();
-  const { signin, signinSuccess } = useSignInAdapter();
+  const { signin, signinLoading } = useSignInAdapter();
 
   const {
     register,
@@ -161,7 +161,6 @@ export default function SignUpPage() {
         }}
       >
         <Box
-          maxWidth="xs"
           sx={{
             display: 'flex',
             flexDirection: 'column',
@@ -301,7 +300,7 @@ export default function SignUpPage() {
               </Alert>
             )}
             <LoadingButton
-              loading={signupLoading || signinSuccess}
+              loading={signupLoading || signinLoading}
               type="submit"
               fullWidth
               variant="contained"

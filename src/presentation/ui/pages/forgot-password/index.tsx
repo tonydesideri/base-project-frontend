@@ -108,7 +108,6 @@ export default function ForgotPasswordPage() {
         {!showMessage && (
           <>
             <Box
-              maxWidth="xs"
               sx={{
                 display: 'flex',
                 flexDirection: 'column',
@@ -194,7 +193,6 @@ export default function ForgotPasswordPage() {
 
         {showMessage && (
           <Box
-            maxWidth="xs"
             sx={{
               display: 'flex',
               flexDirection: 'column',
