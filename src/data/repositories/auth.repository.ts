@@ -1,7 +1,8 @@
 import { IAuthRepository } from 'src/domain/repositories/authRepository.interface';
 import { TForgotPasswordUseCase } from 'src/domain/usecases/auth/forgotPassword.interface';
 import { TIsAuthenticatedUseCase } from 'src/domain/usecases/auth/isAuthenticated.interface';
-import { TResetPasswordUseCase } from 'src/domain/usecases/auth/resetPassword.interface';
+import { TPreloadResetPasswordUseCase } from 'src/domain/usecases/auth/preload-reset-password.interface';
+import { TResetPasswordUseCase } from 'src/domain/usecases/auth/reset-password.interface';
 import { TSignInUseCase } from 'src/domain/usecases/auth/signin.interface';
 import { TSignUpUseCase } from 'src/domain/usecases/auth/signup.interface';
 import { IHttpService } from '../services/http.interface';
@@ -45,5 +46,16 @@ export class AuthRepository implements IAuthRepository {
         }
       }
     );
+  }
+
+  async preloadResetPassword(
+    params: TPreloadResetPasswordUseCase.Params
+  ): Promise<void> {
+    await this.httpService.get<void>('/auth/preload-reset-password', {
+      params: {
+        email: params.email,
+        token: params.token
+      }
+    });
   }
 }

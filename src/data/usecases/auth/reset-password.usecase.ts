@@ -2,7 +2,7 @@ import { IAuthRepository } from 'src/domain/repositories/authRepository.interfac
 import {
   IResetPasswordUseCase,
   TResetPasswordUseCase
-} from 'src/domain/usecases/auth/resetPassword.interface';
+} from 'src/domain/usecases/auth/reset-password.interface';
 
 export class ResetPasswordUseCase implements IResetPasswordUseCase {
   private authRepository: IAuthRepository;

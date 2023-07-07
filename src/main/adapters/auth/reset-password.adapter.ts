@@ -1,7 +1,7 @@
 import { useMutation } from 'react-query';
 import { AuthRepository } from 'src/data/repositories/auth.repository';
-import { ResetPasswordUseCase } from 'src/data/usecases/auth/resetPassword.usecase';
-import { TResetPasswordUseCase } from 'src/domain/usecases/auth/resetPassword.interface';
+import { ResetPasswordUseCase } from 'src/data/usecases/auth/reset-password.usecase';
+import { TResetPasswordUseCase } from 'src/domain/usecases/auth/reset-password.interface';
 import { HttpService } from 'src/infrastructure/services/http.service';
 
 export function useResetPasswordAdapter() {
@@ -9,21 +9,21 @@ export function useResetPasswordAdapter() {
     new AuthRepository(new HttpService())
   );
 
-  const { mutateAsync, isError, isLoading, isSuccess } = useMutation(
+  const { mutateAsync, error, isLoading, isSuccess } = useMutation(
     async (params: TResetPasswordUseCase.Params) => {
       await useCase.execute(params);
     },
     {
       onError: (error: any) => {
-        alert(error.message);
+        return error?.message;
       }
     }
   );
 
   return {
     resetPassword: mutateAsync,
-    isError,
-    isLoading,
-    isSuccess
+    resetPasswordError: error?.message ? error.message : undefined,
+    resetPasswordLoading: isLoading,
+    resetPasswordSuccess: isSuccess
   };
 }

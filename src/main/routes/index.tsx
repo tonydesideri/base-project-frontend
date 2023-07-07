@@ -13,7 +13,7 @@ const VerifyEmailPageFactory = lazy(
   () => import('src/main/factories/pages/verify-email.factory')
 );
 const ResetPasswordPageFectory = lazy(
-  () => import('src/main/factories/pages/resetPassword.factory')
+  () => import('src/main/factories/pages/reset-password.factory')
 );
 
 export function Router() {
