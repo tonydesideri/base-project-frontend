@@ -198,7 +198,7 @@ export default function ForgotPasswordPage() {
               flexDirection: 'column',
               alignItems: 'center',
               padding: '3rem 1rem',
-              textAlign: 'center'
+              textAlign: 'left'
             }}
           >
             <Avatar sx={{ bgcolor: 'primary.main' }}>
