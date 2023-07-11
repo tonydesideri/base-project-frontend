@@ -1,7 +1,6 @@
 import { Suspense, lazy } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import SplashScreen from 'src/presentation/components/splash-screen';
-import ForgotPasswordPage from 'src/presentation/ui/pages/forgot-password';
 import { IsAuthenticatedProvider } from '../contexts/isAuthenticated.context';
 import { PrivateRoute } from './private/PrivateRoute';
 import { PublicRoute } from './public/PublicRoute';
@@ -14,6 +13,12 @@ const VerifyEmailPageFactory = lazy(
 );
 const ResetPasswordPageFectory = lazy(
   () => import('src/main/factories/pages/reset-password.factory')
+);
+const ForgotPasswordPage = lazy(
+  () => import('src/presentation/ui/pages/forgot-password')
+);
+const EmailConfirmationPageFactory = lazy(
+  () => import('src/main/factories/pages/email-confirmation.factory')
 );
 
 export function Router() {
@@ -53,6 +58,10 @@ export function Router() {
                   <ForgotPasswordPage />
                 </PublicRoute>
               }
+            />
+            <Route
+              path="/email-confirmation"
+              element={<EmailConfirmationPageFactory />}
             />
             <Route
               path="/reset-password"
