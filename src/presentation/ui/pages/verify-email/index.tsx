@@ -1,13 +1,33 @@
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { LoadingButton } from '@mui/lab';
-import { Avatar, Box, Container, Typography } from '@mui/material';
+import {
+  Avatar,
+  Box,
+  Container,
+  LinearProgress,
+  Typography
+} from '@mui/material';
 import { TIsAuthenticatedUseCase } from 'src/domain/usecases/auth/isAuthenticated.interface';
+import { useResendConfirmationEmailAdapter } from 'src/main/adapters/user/resend-confirmation-email.adapter';
 
 interface VerifyEmailPageProps {
   user?: TIsAuthenticatedUseCase.Model;
 }
 
 export default function VerifyEmailPage({ user }: VerifyEmailPageProps) {
+  const { resendConfirmationEmail, resendConfirmationEmailLoading } =
+    useResendConfirmationEmailAdapter();
+
+  const handleResendConfirmationEmail = async () => {
+    if (user) {
+      await resendConfirmationEmail({
+        email: user.email
+      });
+    }
+
+    console.log('Erro ao reenviar e-mail');
+  };
+
   return (
     <Box
       sx={{
@@ -66,7 +86,13 @@ export default function VerifyEmailPage({ user }: VerifyEmailPageProps) {
             </Typography>
             . Obrigado pela confiança!
           </Typography>
-          <LoadingButton type="submit" variant="outlined" sx={{ mt: 3 }}>
+          <LoadingButton
+            type="button"
+            variant="outlined"
+            sx={{ mt: 3 }}
+            loading={resendConfirmationEmailLoading}
+            onClick={handleResendConfirmationEmail}
+          >
             Reenviar e-mail
           </LoadingButton>
           <Typography
@@ -97,6 +123,9 @@ export default function VerifyEmailPage({ user }: VerifyEmailPageProps) {
               fale conosco.
             </Typography>
           </Typography>
+          {resendConfirmationEmailLoading && (
+            <LinearProgress sx={{ width: '100%', mt: 3 }} />
+          )}
         </Box>
       </Container>
     </Box>
